@@ -55,7 +55,7 @@ public class CachingExecutor implements Executor {
   public void close(boolean forceRollback) {
     try {
       //issues #499, #524 and #573
-      if (forceRollback) { 
+      if (forceRollback) {
         tcm.rollback();
       } else {
         tcm.commit();
@@ -91,7 +91,7 @@ public class CachingExecutor implements Executor {
 
   @Override
   public <E> List<E> query(MappedStatement ms, Object parameterObject, RowBounds rowBounds, ResultHandler resultHandler, CacheKey key, BoundSql boundSql)
-      throws SQLException {
+          throws SQLException {
     Cache cache = ms.getCache();
     if (cache != null) {
       flushCacheIfRequired(ms);
@@ -163,7 +163,7 @@ public class CachingExecutor implements Executor {
 
   private void flushCacheIfRequired(MappedStatement ms) {
     Cache cache = ms.getCache();
-    if (cache != null && ms.isFlushCacheRequired()) {      
+    if (cache != null && ms.isFlushCacheRequired()) {
       tcm.clear(cache);
     }
   }

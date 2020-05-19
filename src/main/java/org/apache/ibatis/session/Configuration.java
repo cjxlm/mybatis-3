@@ -351,6 +351,7 @@ public class Configuration {
 
   public void setProxyFactory(ProxyFactory proxyFactory) {
     if (proxyFactory == null) {
+      //默认 JavassistProxyFactory
       proxyFactory = new JavassistProxyFactory();
     }
     this.proxyFactory = proxyFactory;
@@ -575,6 +576,7 @@ public class Configuration {
     } else {
       executor = new SimpleExecutor(this, transaction);
     }
+    //是否开启二级缓存
     if (cacheEnabled) {
       executor = new CachingExecutor(executor);
     }
